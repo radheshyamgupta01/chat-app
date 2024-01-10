@@ -36,3 +36,58 @@
     transform: rotate(360deg);
   }
 }
+/* App.css */
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+.app {
+  @apply flex h-screen;
+}
+
+.sidebar {
+  @apply w-1/4 p-4 bg-gray-200;
+}
+
+.chat {
+  @apply flex-1 p-4 overflow-y-auto;
+}
+
+.user-details img {
+  @apply w-12 h-12 rounded-full;
+}
+
+.message-list {
+  @apply space-y-4;
+}
+
+.message img {
+  @apply w-8 h-8 rounded-full;
+}
+
+.message-content {
+  @apply ml-2;
+}
+
+.message-input {
+  @apply flex mt-4;
+}
+
+textarea {
+  @apply flex-1 mr-2 p-2 border border-gray-300 rounded-lg;
+}
+
+button {
+  @apply px-4 py-2 bg-blue-500 text-white rounded-lg;
+}
+
+/* Add responsive styles here */
+@screen sm {
+  .app {
+    @apply flex-col;
+  }
+
+  .sidebar {
+    @apply w-full;
+  }
+}
