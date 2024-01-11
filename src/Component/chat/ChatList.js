@@ -1,7 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
-import Context from "./Contex/Contex";
-
+import Context from "../Contex/Contex";
+import AddGroupMember from "../GroupChat/AddGroupMember";
+import {useNavigate} from 'react-router-dom'
 const ChatList = ({getAllChat}) => {
+  const navigate=useNavigate()
   const {RecipientUserHandler,RecipientUser}=useContext(Context)
     const [users, setUsers] = useState([]);
    
@@ -12,10 +14,7 @@ const ChatList = ({getAllChat}) => {
       name: "Flo Steinle",
       message: "Good afternoon! How can I help you?",
     },
-    // { id: 2, name: 'Radhe', message: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis, doloribus?' },
-    // { id: 3, name: 'Soni', message: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis, doloribus?' },
-    // { id: 4, name: 'Sarah D', message: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis, doloribus?' },
-    // { id: 5, name: 'Amar', message: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis, doloribus?' },
+  
   ];
   useEffect(() => {
     const fetchUserList = async () => {
@@ -37,11 +36,13 @@ const ChatList = ({getAllChat}) => {
     fetchUserList();
   }, []);
 
-  // State variable to store the list of users
 
 const recipientUserMessageHandler=(user,name)=>{
     RecipientUserHandler([user,name])
   getAllChat(user,name);
+}
+const AddGroupMemberHandler=()=>{
+navigate("/member")
 }
   return (
     <div className="h-full overflow-hidden relative pt-2">
@@ -73,7 +74,7 @@ const recipientUserMessageHandler=(user,name)=>{
         ))}
       </div>
       <div className="absolute bottom-0 right-0 mr-2">
-        <button className="flex items-center justify-center shadow-sm h-10 w-10 bg-blue-500 text-white rounded-full">
+        <button onClick={()=>AddGroupMemberHandler()} className="flex items-center justify-center shadow-sm h-10 w-10 bg-blue-700 text-white rounded-full">
           <svg
             className="w-6 h-6"
             fill="none"

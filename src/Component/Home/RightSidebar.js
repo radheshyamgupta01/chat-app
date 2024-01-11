@@ -24,7 +24,7 @@ function RightSidebar() {
 
         console.log("Success:", data);
 
-        // Optionally, update the UI or reset input fields after a successful send
+        
         setUserId("");
         setMessage("");
       })

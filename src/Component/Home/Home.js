@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
-import Context from "./Contex/Contex";
-import ChatList from "./ChatList";
+import Context from "../Contex/Contex";
+import ChatList from "../chat/ChatList";
 function Home() {
   const [messages, setMessages] = useState([]);
   const [chatMessage, setChatMessage] = useState("");
@@ -14,37 +14,6 @@ function Home() {
   const userName = localStorage.getItem("userName");
   const storedUserIdData = localStorage.getItem("token");
   userHandler(storedUserIdData);
-
-  // useEffect(() => {
-  //   const fetchChatMessages = async () => {
-  //     try {
-  //       const response = await fetch(
-  //         `http://localhost:4000/chat/chats/${"user_idData"}`,
-  //         {
-  //           method: "GET",
-  //           headers: {
-  //             "Content-Type": "application/json",
-  //             // Add any additional headers if needed
-  //           },
-  //         }
-  //       );
-  //       if (response.ok) {
-  //         const data = await response.json();
-  //         setMessages(data);
-  //       } else {
-  //         console.error("Failed to fetch chat messages.");
-  //       }
-  //     } catch (error) {
-  //       console.error(
-  //         "An error occurred while fetching chat messages:",
-  //         error
-  //       );
-  //     }
-  //   };
-
-  //   fetchChatMessages();
-  // }, [user_idData]);
-
   const handlePostMessage = async (e) => {
     e.preventDefault();
 
@@ -78,27 +47,14 @@ function Home() {
 
         const allMessages = [...senderMessageData, ...recepientMessageData];
 
-        // Sort messages by 'createdAt' timestamp
+      
         const sortedMessages = allMessages.sort(
           (a, b) => a.createdAt - b.createdAt
         );
 
         setMessages(sortedMessages);
 
-        // Log the createdAtBysender values
-        // console.log(createdAtBySenderValues, "this is created by sender");
-
-        // Update the state with the new value
-        // setsenderMessageData((prevMessages) => [...prevMessages, data.createdAtBysender]);
-
-        // // Now createdAtBySenderArray is an array containing all the createdAtBysender values
-        // console.log(createdAtBySenderArray,"this si created  by sender message ");
-
-        //         console.log(senderMessageData,"this is sendere message data")
-        // Log the createdAtBysender value
-        // console.log(data.createdAtBysender, "this is sender message");
-
-        //     console.log(data.createdAtByReceipient,"this is recepient user")
+        
 
         setMessages((prevMessages) => [...prevMessages, data]);
 
@@ -376,53 +332,7 @@ function Home() {
               </div>
             </div>
             <ChatList getAllChat={getAllChat}></ChatList>
-            {/* // list of user section start
-            <div class="h-full overflow-hidden relative pt-2">
-              <div class="flex flex-col divide-y h-full overflow-y-auto -mx-4">
-                <div class="flex flex-row items-center p-4 relative">
-                  <div class="absolute text-xs text-gray-500 right-0 top-0 mr-4 mt-3">
-                    2 hours ago
-                  </div>
-                  <div class="flex items-center justify-center h-10 w-10 rounded-full bg-pink-500 text-pink-300 font-bold flex-shrink-0">
-                    T
-                  </div>
-                  <div class="flex flex-col flex-grow ml-3">
-                    <div class="text-sm font-medium">Flo Steinle</div>
-                    <div class="text-xs truncate w-40">
-                      Good after noon! how can i help you?
-                    </div>
-                  </div>
-                  <div class="flex-shrink-0 ml-2 self-end mb-1">
-                    <span class="flex items-center justify-center h-5 w-5 bg-red-500 text-white text-xs rounded-full">
-                      3
-                    </span>
-                  </div>
-                </div>
-               
-                
-               
-               
-              </div>
-              <div class="absolute bottom-0 right-0 mr-2">
-                <button class="flex items-center justify-center shadow-sm h-10 w-10 bg-green-500 text-white rounded-full">
-                  <svg
-                    class="w-6 h-6"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M12 6v6m0 0v6m0-6h6m-6 0H6"
-                    ></path>
-                  </svg>
-                </button>
-              </div>
-            </div> */}
-            {/* // list of user section end */}
+        
           </div>
         </div>
         <div class="flex flex-col h-full w-full bg-white px-4 py-6">
@@ -510,254 +420,7 @@ function Home() {
           </div>
           <div class="h-full overflow-hidden py-4 bg-blue-600">
             <div class="h-full overflow-y-auto overflow-hidden ">
-              {/* {messages.map((data, index) => {
-                return (
-                  <div class="grid grid-cols-12 gap-y-2">
-                    <div
-                      class="col-start-1 col-end-8 p-3 rounded-lg"
-                      key={index}
-                    >
-                      <div class="flex flex-row items-center">
-                        <div class="flex items-center justify-center h-10 w-10 rounded-full bg-indigo-500 flex-shrink-0">
-                          {data.recipientId}
-                        </div>
-                        <div class="relative ml-3 text-sm bg-white text-black py-2 px-4 shadow rounded-xl">
-                          {/* <div>Hey How are you today?</div> */}
-              {/* <div>{data.senderMessage}</div> */}
-              {/* </div>
-                      </div>
-
-                      <div class="col-start-6 col-end-13 p-3 rounded-lg">
-                        <div class="flex items-center justify-start flex-row-reverse">
-                          <div class="flex items-center justify-center h-10 w-10 rounded-full bg-indigo-500 flex-shrink-0">
-                            {userName}
-                          </div>
-                          <div class="relative mr-3 text-sm bg-indigo-100 py-2 px-4 shadow rounded-xl">
-                            <div>{data.senderMessage}</div>
-                          </div>
-                        </div>
-                      </div>
-                    </div> */}
-              {/* <div class="col-start-6 col-end-13 p-3 rounded-lg">
-                      <div class="flex items-center justify-start flex-row-reverse">
-                        <div class="flex items-center justify-center h-10 w-10 rounded-full bg-indigo-500 flex-shrink-0">
-                          soni
-                        </div>
-                        <div class="relative mr-3 text-sm bg-indigo-100 py-2 px-4 shadow rounded-xl">
-                          <div>I'm ok what about you?</div>
-                        </div>
-                      </div>
-                    </div> */}
-              {/* <div class="col-start-1 col-end-8 p-3 rounded-lg">
-                  <div class="flex flex-row items-center">
-                    <div class="flex items-center justify-center h-10 w-10 rounded-full bg-indigo-500 flex-shrink-0">
-                    Radhe
-                    </div>
-                    <div class="relative ml-3 text-sm bg-white py-2 px-4 shadow rounded-xl">
-                      <div>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing
-                        elit. Vel ipsa commodi illum saepe numquam maxime
-                        asperiores voluptate sit, minima perspiciatis.
-                      </div>
-                    </div>
-                  </div>
-                </div>  */}
-              {/* /////////////////////////////// */}
-              {/* <div class="col-start-6 col-end-13 p-3 rounded-lg">
-                      <div class="flex items-center justify-start flex-row-reverse">
-                        <div class="flex items-center justify-center h-10 w-10 rounded-full bg-indigo-500 flex-shrink-0">
-                          soni
-                        </div>
-                        <div class="relative mr-3 text-sm bg-indigo-100 py-2 px-4 shadow rounded-xl">
-                          <div>I'm ok what about you?</div>
-                        </div>
-                      </div>
-                    </div> */}
-              {/* ////////////////////// */}
-              {/* <div class="col-start-6 col-end-13 p-3 rounded-lg">
-                  <div class="flex items-center justify-start flex-row-reverse">
-                    <div class="flex items-center justify-center h-10 w-10 rounded-full bg-indigo-500 flex-shrink-0">
-                      soni
-                    </div>
-                    <div class="relative mr-3 text-sm bg-indigo-100 py-2 px-4 shadow rounded-xl">
-                      <div>
-                        Lorem ipsum dolor sit, amet consectetur adipisicing. ?
-                      </div>
-                    </div>
-                  </div>
-                </div> */}
-              {/* <div class="col-start-1 col-end-8 p-3 rounded-lg">
-                  <div class="flex flex-row items-center">
-                    <div class="flex items-center justify-center h-10 w-10 rounded-full bg-indigo-500 flex-shrink-0">
-                      A
-                    </div>
-                    <div class="relative ml-3 text-sm bg-white py-2 px-4 shadow rounded-xl">
-                      <div>Lorem ipsum dolor sit amet !</div>
-                    </div>
-                  </div>
-                </div> */}
-              {/* <div class="col-start-6 col-end-13 p-3 rounded-lg">
-                  <div class="flex items-center justify-start flex-row-reverse">
-                    <div class="flex items-center justify-center h-10 w-10 rounded-full bg-indigo-500 flex-shrink-0">
-                      A
-                    </div>
-                    <div class="relative mr-3 text-sm bg-indigo-100 py-2 px-4 shadow rounded-xl">
-                      <div>
-                        Lorem ipsum dolor sit, amet consectetur adipisicing. ?
-                      </div>
-                      <div class="absolute text-xs bottom-0 right-0 -mb-5 mr-2 text-gray-500">
-                        Seen
-                      </div>
-                    </div>
-                  </div>
-                </div> */}
-              {/* <div class="col-start-1 col-end-8 p-3 rounded-lg">
-                  <div class="flex flex-row items-center">
-                    <div class="flex items-center justify-center h-10 w-10 rounded-full bg-indigo-500 flex-shrink-0">
-                      A
-                    </div>
-                    <div class="relative ml-3 text-sm bg-white py-2 px-4 shadow rounded-xl">
-                      <div>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Perspiciatis, in.
-                      </div>
-                    </div>
-                  </div>
-                </div> */}
-              {/* /////// */}
-              {/* <div class="col-start-1 col-end-8 p-3 rounded-lg">
-                  <div class="flex flex-row items-center">
-                    <div class="flex items-center justify-center h-10 w-10 rounded-full bg-indigo-500 flex-shrink-0">
-                      icon
-                    </div>
-                    <div class="relative ml-3 text-sm bg-white py-2 px-4 shadow rounded-xl">
-                      <div class="flex flex-row items-center">
-                        <button class="flex items-center justify-center bg-indigo-600 hover:bg-indigo-800 rounded-full h-8 w-10">
-                          <svg
-                            class="w-6 h-6 text-white"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              stroke-width="1.5"
-                              d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"
-                            ></path>
-                            <path
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              stroke-width="1.5"
-                              d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                            ></path>
-                          </svg>
-                        </button>
-                        <div class="flex flex-row items-center space-x-px ml-4">
-                          <div class="h-2 w-1 bg-gray-500 rounded-lg"></div>
-                          <div class="h-2 w-1 bg-gray-500 rounded-lg"></div>
-                          <div class="h-4 w-1 bg-gray-500 rounded-lg"></div>
-                          <div class="h-8 w-1 bg-gray-500 rounded-lg"></div>
-                          <div class="h-8 w-1 bg-gray-500 rounded-lg"></div>
-                          <div class="h-10 w-1 bg-gray-500 rounded-lg"></div>
-                          <div class="h-10 w-1 bg-gray-500 rounded-lg"></div>
-                          <div class="h-12 w-1 bg-gray-500 rounded-lg"></div>
-                          <div class="h-10 w-1 bg-gray-500 rounded-lg"></div>
-                          <div class="h-6 w-1 bg-gray-500 rounded-lg"></div>
-                          <div class="h-5 w-1 bg-gray-500 rounded-lg"></div>
-                          <div class="h-4 w-1 bg-gray-500 rounded-lg"></div>
-                          <div class="h-3 w-1 bg-gray-500 rounded-lg"></div>
-                          <div class="h-2 w-1 bg-gray-500 rounded-lg"></div>
-                          <div class="h-2 w-1 bg-gray-500 rounded-lg"></div>
-                          <div class="h-2 w-1 bg-gray-500 rounded-lg"></div>
-                          <div class="h-10 w-1 bg-gray-500 rounded-lg"></div>
-                          <div class="h-2 w-1 bg-gray-500 rounded-lg"></div>
-                          <div class="h-10 w-1 bg-gray-500 rounded-lg"></div>
-                          <div class="h-8 w-1 bg-gray-500 rounded-lg"></div>
-                          <div class="h-8 w-1 bg-gray-500 rounded-lg"></div>
-                          <div class="h-1 w-1 bg-gray-500 rounded-lg"></div>
-                          <div class="h-1 w-1 bg-gray-500 rounded-lg"></div>
-                          <div class="h-2 w-1 bg-gray-500 rounded-lg"></div>
-                          <div class="h-8 w-1 bg-gray-500 rounded-lg"></div>
-                          <div class="h-8 w-1 bg-gray-500 rounded-lg"></div>
-                          <div class="h-2 w-1 bg-gray-500 rounded-lg"></div>
-                          <div class="h-2 w-1 bg-gray-500 rounded-lg"></div>
-                          <div class="h-2 w-1 bg-gray-500 rounded-lg"></div>
-                          <div class="h-2 w-1 bg-gray-500 rounded-lg"></div>
-                          <div class="h-4 w-1 bg-gray-500 rounded-lg"></div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div> */}
-              {/* </div>
-                );
-              })}  */}
-
-              {/* {messages.map((data, index) => {
-  const isSenderMessage = data && data.createdby === data.senderEmail;
-
-  return (
-    <div  key={index}>
-    <div class="space-y-4">
-      {/* <!-- Received Message --> */}
-              {/* { !isSenderMessage  && <div class="flex items-start">
-        <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 100 100"
-            width="100"
-            height="100"
-            fill="#009688"
-            class="w-8 h-8 rounded-full"
-            > */}
-
-              {/* <!-- Robot Face --> */}
-              {/* <circle cx="50" cy="50" r="20" fill="#009688" />
-            <circle cx="50" cy="40" r="2" fill="#fff" />
-            <rect x="47" y="45" width="6" height="10" fill="#fff" />
-            <circle cx="50" cy="65" r="3" fill="#009688" />
-
-            <!-- Robot Eyes --> */}
-              {/* <circle cx="45" cy="45" r="3" fill="#fff" />
-            <circle cx="55" cy="45" r="3" fill="#fff" />
-            <circle cx="45" cy="45" r="1" fill="#000" />
-            <circle cx="55" cy="45" r="1" fill="#000" />
-
-            {/* <!-- Robot Antennas --> */}
-              {/* <line x1="50" y1="30" x2="40" y2="20" stroke="#009688" stroke-width="2" />
-            <line x1="50" y1="30" x2="60" y2="20" stroke="#009688" stroke-width="2" />
-            </svg>
-        <div class="ml-3 bg-gray-100 p-3 rounded-lg">
-          <p class="text-sm text-gray-800">{data.senderMessage}</p>
-        </div>
-      </div>} */}
-
-              {/* <!-- Sent Message --> */}
-              {/* { isSenderMessage &&  <div class="flex items-end justify-end mt-4">
-        <div class="bg-blue-500 p-3 rounded-lg">
-          <p class="text-sm text-white">{data.senderMessage}</p>
-        </div>
-        <img src="https://pbs.twimg.com/profile_images/1707101905111990272/Z66vixO-_normal.jpg" alt="Other User Avatar" class="w-8 h-8 rounded-full ml-3" />
-      </div>}
-    </div>
-    </div>
-  );
-})} */}
-
-              {/* 
-{recepientMessageData.map((data,index)=>{
-return <div class="flex items-end justify-end mt-4">
- <div class="bg-blue-500 p-3 rounded-lg">
-   <p class="text-sm text-white">{data.senderMessage}</p>
- </div>
- <img
-   src="https://pbs.twimg.com/profile_images/1707101905111990272/Z66vixO-_normal.jpg"
-   alt="Your Avatar"
-   class="w-8 h-8 rounded-full ml-3"
- />
-</div>
-})} */}
+           
 
               {messages.map((data, index) => {
                 let currentUserEmail = localStorage.getItem("UserEmail");
@@ -778,7 +441,7 @@ return <div class="flex items-end justify-end mt-4">
 
                       {/* Sent Message */}
 
-                      {/* <p class="text-sm text-gray-800">{data.senderMessage}{data.senderEmail}</p> */}
+                   
 
                       {data.senderEmail === currentUserEmail ? (
                         <div class="flex items-end justify-end mt-4">
@@ -798,31 +461,9 @@ return <div class="flex items-end justify-end mt-4">
               })}
             </div>
           </div>
-          {/* <div className="h-full overflow-hidden py-4 fixed bg-green-300">
-            <div className="h-full overflow-y-auto">
-              <div className="grid grid-cols-12 gap-y-2">
-                {messages.map((message, index) => (
-                  <div
-                    key={index}
-                    className={`col-start-${message.columnStart} col-end-${message.columnEnd} p-3 rounded-lg`}
-                  >
-                    <div
-                      className={`flex items-center ${message.alignmentClass}`}
-                    >
-                      <div className="flex items-center justify-center h-10 w-10 rounded-full bg-green-500 flex-shrink-0">
-                        {/* {message.sender} */}
-          {/* </div>
-                      <div className={`relative ${message.textContainerClass}`}>
-                        <div>{message.message.message}</div>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div> */}
-          {/* </div> */}
-          {/* </div>  */}
+     
           <form
-            class="flex flex-row items-center bg-blue-400"
+            class="flex flex-row items-center bg-blue-700"
             onSubmit={(e) => handlePostMessage(e)}
           >
             <div class="flex flex-row items-center w-full border rounded-3xl h-12 px-2">
@@ -852,7 +493,7 @@ return <div class="flex items-end justify-end mt-4">
                 />
               </div>
               <div class="flex flex-row">
-                <button class="flex items-center justify-center h-10 w-8 text-gray-400">
+                <button class="flex items-center justify-center h-10 w-8 text-gray-800">
                   <svg
                     class="w-5 h-5"
                     fill="none"
@@ -868,7 +509,7 @@ return <div class="flex items-end justify-end mt-4">
                     ></path>
                   </svg>
                 </button>
-                <button class="flex items-center justify-center h-10 w-8 text-gray-400 ml-1 mr-2">
+                <button class="flex items-center justify-center h-10 w-8 text-gray-500 ml-1 mr-2">
                   <svg
                     class="w-5 h-5"
                     fill="none"
@@ -887,7 +528,7 @@ return <div class="flex items-end justify-end mt-4">
               </div>
             </div>
             <div class="ml-6">
-              <button class="flex items-center justify-center h-10 w-10 rounded-full bg-gray-200 hover:bg-gray-300 text-indigo-800 text-white">
+              <button class="flex items-center justify-center h-10 w-10 rounded-full bg-gray-400 hover:bg-gray-300 text-indigo-800 text-white">
                 <svg
                   class="w-5 h-5 transform rotate-90 -mr-px"
                   fill="none"

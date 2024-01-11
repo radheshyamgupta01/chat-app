@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import YourComponent from "./YourCompoent";
-import { useActionData } from "react-router-dom";
 
 function LeftSidebar() {
   const [userList, setUserList] = useState([]);

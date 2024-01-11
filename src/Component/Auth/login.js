@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import Alert from "./Alert";
 import { useNavigate } from "react-router-dom";
-import Context from "./chat/Home/Contex/Contex";
+import Context from "../Contex/Contex";
 import TextToSpeechComponent from "./TextToSpeech";
 export default function Login() {
   const navigate = useNavigate();
